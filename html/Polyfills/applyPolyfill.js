@@ -17,7 +17,7 @@ function foo(age,city){
     console.log(`hello ${this.name}, your age is ${age} and lives in ${city}`);
 }
 
-foo.apply(p1, [28, 'ongole']);
+// foo.apply(p1, [28, 'ongole']);
 
 // polyfill
 Function.prototype.myApply = function(context, args){
@@ -26,7 +26,8 @@ Function.prototype.myApply = function(context, args){
     }
 
     context.refFunc = this;
-    context.refFunc(...args);
+    const result = context.refFunc(...args);
+    return result;
 }
 
 // polyfill improved version
@@ -44,4 +45,4 @@ Function.prototype.myApplyImproved = function(context, args){
 }
 
 foo.myApply(p1, [28, 'hyderabad']);
-foo.myApplyImproved(p1, [28, 'bangalore']);
+// foo.myApplyImproved(p1, [28, 'bangalore']);
